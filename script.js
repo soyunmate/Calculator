@@ -1,5 +1,8 @@
 "use strict";
 const numberContainer = document.querySelector(".number-container");
+const numberScreen = document.querySelector(".number-screen");
+const btnOperators = document.querySelectorAll(".btn-operator");
+const symbols = ["+", "-", "*", "/"];
 const calculator = {
   add(...n) {
     return n.reduce((summ, cur) => (summ += cur), 0);
@@ -28,3 +31,26 @@ for (let i = 1; i <= 9; i++) {
   btn.classList.add("btn-number");
   numberContainer.appendChild(btn);
 }
+
+const allButtons = document.querySelectorAll(".btn");
+const btnNumber = document.querySelectorAll(".btn-number");
+
+btnNumber.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    numberScreen.textContent += btn.textContent;
+  });
+});
+
+btnOperators.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    if (numberScreen.textContent === "") return;
+    if (
+      numberScreen.textContent.endsWith("+") ||
+      numberScreen.textContent.endsWith("-") ||
+      numberScreen.textContent.endsWith("*") ||
+      numberScreen.textContent.endsWith("/")
+    )
+      return;
+    numberScreen.textContent += btn.textContent;
+  });
+});

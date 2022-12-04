@@ -44,5 +44,10 @@ body {
 
 .btn-equal {
   align-self: center;
+  width: 80px;
+  height: 50px;
+  font-size: 32px;
+  font-weight: bolder;
+  margin: 5px;
   margin-right: 15px;
 }
