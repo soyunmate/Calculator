@@ -2,6 +2,7 @@
 const numberContainer = document.querySelector(".number-container");
 const numberScreen = document.querySelector(".number-screen");
 const btnOperators = document.querySelectorAll(".btn-operator");
+const btnEqual = document.querySelector(".btn-equal");
 const symbols = ["+", "-", "*", "/"];
 const calculator = {
   add(...n) {
@@ -53,4 +54,27 @@ btnOperators.forEach((btn) => {
       return;
     numberScreen.textContent += btn.textContent;
   });
+});
+
+const separateOperator = function (str) {
+  console.log(toString(str));
+
+  if (substr.includes("*")) substr.split("*");
+  if (substr.includes("/")) substr.split("/");
+  if (substr.includes("+")) substr.split("+");
+  if (substr.includes("-")) substr.split("-");
+  console.log(substr);
+};
+
+separateOperator("5+5-5/7*10");
+
+btnEqual.addEventListener("click", function () {
+  const operationtext = numberScreen.textContent;
+  const arr = operationtext;
+
+  //   const finalArr = [];
+  //   arr.map((n, i, ar) => {
+  //     if (symbols.includes(n)) finalArr.push([(ar[i - 1], ar[i], ar[i + 1])]);
+  //   });
+  //   console.log(finalArr);
 });
