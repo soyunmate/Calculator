@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  background-color: gray;
+}
+
+.number-screen {
+  display: flex;
+  background-color: white;
+  width: 300px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+}
+
+.operator-container {
+  margin: 10px;
+}
+
+.btn {
+  width: 80px;
+  height: 50px;
+  font-size: 32px;
+  font-weight: bolder;
+  margin: 5px;
+}
+
+.number-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  height: 190px;
+}
+
+.btn-equal {
+  align-self: center;
+  margin-right: 15px;
+}
