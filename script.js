@@ -57,16 +57,11 @@ btnOperators.forEach((btn) => {
 });
 
 const separateOperator = function (str) {
-  console.log(toString(str));
-
-  if (substr.includes("*")) substr.split("*");
-  if (substr.includes("/")) substr.split("/");
-  if (substr.includes("+")) substr.split("+");
-  if (substr.includes("-")) substr.split("-");
+  let substr = str.split?.("*");
   console.log(substr);
 };
 
-separateOperator("5+5-5/7*10");
+separateOperator("5+5-5*7*10");
 
 btnEqual.addEventListener("click", function () {
   const operationtext = numberScreen.textContent;
