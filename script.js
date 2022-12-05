@@ -3,8 +3,8 @@ const numberContainer = document.querySelector(".number-container");
 const numberScreen = document.querySelector(".number-screen");
 const btnOperators = document.querySelectorAll(".btn-operator");
 const btnEqual = document.querySelector(".btn-equal");
-
 const symbols = ["+", "-", "*", "/"];
+
 const calculator = {
   add(...n) {
     return n.reduce((summ, cur) => (summ += Number(cur)), 0);
@@ -25,6 +25,8 @@ const calculator = {
     if (operator === "/") return this.divide(n1, n2);
   },
 };
+
+////////////////////// Buttons generator///////////////
 
 for (let i = 1; i <= 12; i++) {
   const btn = document.createElement("button");
@@ -61,6 +63,18 @@ const btnClear = document.querySelector(".btn-clear");
 const allButtons = document.querySelectorAll(".btn");
 const btnNumber = document.querySelectorAll(".btn-number");
 
+////////////////////// helper functions ///////////////
+
+const findIndexMultOrDivision = function (arr) {
+  return arr.findIndex((n) => n === "*" || n === "/");
+};
+
+const findIndexSumRes = function (arr) {
+  return arr.findIndex((n) => n === "+" || n === "-");
+};
+
+////////////////////// Buttons event Listeners///////////////
+
 btnNumber.forEach((btn) => {
   btn.addEventListener("click", function () {
     if (!(numberScreen.textContent === "" && btn.textContent === "."))
@@ -82,33 +96,6 @@ btnOperators.forEach((btn) => {
   });
 });
 
-const findIndexMultOrDivision = function (arr) {
-  return arr.findIndex((n) => n === "*" || n === "/");
-};
-
-const findIndexSumRes = function (arr) {
-  return arr.findIndex((n) => n === "+" || n === "-");
-};
-
-const operationResult = function (str) {
-  const substr = str.split?.(" ");
-
-  const numbeOfOperations = substr.filter((n) => symbols.includes(n));
-
-  numbeOfOperations.forEach((e) => {
-    let opIndex;
-    substr.includes("*") || substr.includes("/")
-      ? (opIndex = findIndexMultOrDivision(substr))
-      : (opIndex = findIndexSumRes(substr));
-
-    const subOperation = substr.splice(opIndex - 1, 3);
-    const subOpResult = calculator.operate(...subOperation);
-    substr.splice(opIndex - 1, 0, subOpResult);
-
-    console.log(substr);
-  });
-};
-
 btnEqual.addEventListener("click", function () {
   const operationtext = numberScreen.textContent;
   const substr = operationtext.split(" ");
@@ -124,7 +111,6 @@ btnEqual.addEventListener("click", function () {
     const subOpResult = calculator.operate(...subOperation);
     substr.splice(opIndex - 1, 0, subOpResult);
   });
-  console.log(substr);
   numberScreen.textContent = substr;
 });
 
