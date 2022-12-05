@@ -1,6 +1,7 @@
 body {
   display: flex;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .main-container {
@@ -10,17 +11,23 @@ body {
   align-items: center;
   width: 500px;
   height: 550px;
-  background-color: gray;
+  background-color: rgb(109, 106, 207);
+  border-radius: 50px;
+  border-style: groove;
+  border-color: rgb(93, 60, 169);
 }
 
 .number-screen {
   display: flex;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.422);
   width: 300px;
   height: 80px;
   justify-content: center;
   align-items: center;
   font-size: 32px;
+  border-color: black;
+  border-style: groove;
+  border-radius: 10px;
 }
 
 .operator-container {
@@ -33,6 +40,9 @@ body {
   font-size: 30px;
   font-weight: bolder;
   margin: 5px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
 }
 
 .number-container {
