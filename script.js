@@ -3,6 +3,7 @@ const numberContainer = document.querySelector(".number-container");
 const numberScreen = document.querySelector(".number-screen");
 const btnOperators = document.querySelectorAll(".btn-operator");
 const btnEqual = document.querySelector(".btn-equal");
+
 const symbols = ["+", "-", "*", "/"];
 const calculator = {
   add(...n) {
@@ -25,7 +26,7 @@ const calculator = {
   },
 };
 
-for (let i = 0; i <= 11; i++) {
+for (let i = 1; i <= 12; i++) {
   const btn = document.createElement("button");
   if (i <= 9) {
     btn.textContent = i;
@@ -43,19 +44,27 @@ for (let i = 0; i <= 11; i++) {
   }
 
   if (i === 11) {
+    btn.textContent = "0";
+    btn.classList.add("btn");
+    btn.classList.add("btn-number");
+    numberContainer.appendChild(btn);
+  }
+
+  if (i === 12) {
     btn.textContent = "clear";
     btn.classList.add("btn");
     btn.classList.add("btn-clear");
     numberContainer.appendChild(btn);
   }
 }
-
+const btnClear = document.querySelector(".btn-clear");
 const allButtons = document.querySelectorAll(".btn");
 const btnNumber = document.querySelectorAll(".btn-number");
 
 btnNumber.forEach((btn) => {
   btn.addEventListener("click", function () {
-    numberScreen.textContent += btn.textContent;
+    if (!(numberScreen.textContent === "" && btn.textContent === "."))
+      numberScreen.textContent += btn.textContent;
   });
 });
 
@@ -117,4 +126,8 @@ btnEqual.addEventListener("click", function () {
   });
   console.log(substr);
   numberScreen.textContent = substr;
+});
+
+btnClear.addEventListener("click", function () {
+  numberScreen.textContent = "";
 });
