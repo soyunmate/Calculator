@@ -3,6 +3,7 @@ const numberContainer = document.querySelector(".number-container");
 const numberScreen = document.querySelector(".number-screen");
 const btnOperators = document.querySelectorAll(".btn-operator");
 const btnEqual = document.querySelector(".btn-equal");
+const btnDelete = document.querySelector(".btn-delete");
 const symbols = ["+", "-", "*", "/"];
 
 const calculator = {
@@ -16,7 +17,13 @@ const calculator = {
     return n.reduce((acc, cur) => cur * acc, 1);
   },
   divide(...n) {
-    return n.reduce((acc, cur, i) => (i === 0 ? cur : acc / cur), 0);
+    // if (n === 0) return alert("You cant divide by 0, Dickson");
+    return n.reduce((acc, cur, i) => {
+      if (cur === "0") {
+        return alert("You cant divide by 0, Dickson");
+      }
+      return i === 0 ? cur : acc / cur;
+    }, 0);
   },
   operate(n1, operator, n2) {
     if (operator === "+") return this.add(n1, n2);
@@ -49,6 +56,7 @@ for (let i = 1; i <= 12; i++) {
     btn.textContent = "0";
     btn.classList.add("btn");
     btn.classList.add("btn-number");
+    btn.classList.add("btn-zero");
     numberContainer.appendChild(btn);
   }
 
@@ -77,6 +85,9 @@ const findIndexSumRes = function (arr) {
 
 btnNumber.forEach((btn) => {
   btn.addEventListener("click", function () {
+    if (btn.textContent === "." && numberScreen.textContent.endsWith("."))
+      return;
+
     if (!(numberScreen.textContent === "" && btn.textContent === "."))
       numberScreen.textContent += btn.textContent;
   });
@@ -98,6 +109,13 @@ btnOperators.forEach((btn) => {
 
 btnEqual.addEventListener("click", function () {
   const operationtext = numberScreen.textContent;
+  if (
+    operationtext.endsWith("+ ") ||
+    operationtext.endsWith("- ") ||
+    operationtext.endsWith("* ") ||
+    operationtext.endsWith("/ ")
+  )
+    return alert("Operation must end with a number!");
   const substr = operationtext.split(" ");
   const numbeOfOperations = substr.filter((n) => symbols.includes(n));
 
@@ -111,9 +129,20 @@ btnEqual.addEventListener("click", function () {
     const subOpResult = calculator.operate(...subOperation);
     substr.splice(opIndex - 1, 0, subOpResult);
   });
-  numberScreen.textContent = substr;
+  if (!Number.isInteger(Number(substr))) {
+    numberScreen.textContent = Number(substr).toFixed(2) + "";
+  } else {
+    numberScreen.textContent = substr + "";
+  }
 });
 
 btnClear.addEventListener("click", function () {
   numberScreen.textContent = "";
+});
+
+btnDelete.addEventListener("click", function () {
+  const [...operationtext] = numberScreen.textContent.split("");
+  const x = operationtext.pop();
+  if (x === " ") operationtext.pop();
+  numberScreen.textContent = operationtext.join("");
 });
