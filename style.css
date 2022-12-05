@@ -9,7 +9,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   width: 500px;
-  height: 500px;
+  height: 550px;
   background-color: gray;
 }
 
@@ -49,5 +49,6 @@ body {
   font-size: 32px;
   font-weight: bolder;
   margin: 5px;
+  margin-top: 50px;
   margin-right: 15px;
 }
